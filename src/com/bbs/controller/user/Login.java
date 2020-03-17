@@ -1,14 +1,15 @@
 package com.bbs.controller.user;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bbs.service.user.CrudUser.UserService;
-import com.bbs.service.user.impl.UserServiceImpl;
+import com.bbs.service.user.CrudsService;
+import com.bbs.service.user.impl.CrudsImplService;
 
 /**
  * Servlet implementation class Login
@@ -30,7 +31,7 @@ public class Login extends HttpServlet {
 	 */
     	//创建一个操作用户的业务对象类
     
-  	private UserService us=new UserServiceImpl();
+  	private CrudsService cr=new CrudsImplService();
   	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//设置编码
@@ -40,12 +41,11 @@ public class Login extends HttpServlet {
 		String userId=req.getParameter("userid");
 		String userpsw=req.getParameter("userpsw");
 		//调用业务层中的方法
-		boolean isOk=us.verification(userId, userpsw);
+		boolean isOk=cr.verification(userId, userpsw);
 		//跳转
 		if (isOk) {
-			//跳转到web-inf/server/index.html
-			resp.sendRedirect("index");
-			//req.getRequestDispatcher("index").forward(req, resp);
+			req.getSession().setAttribute("userId",userId);
+			req.getRequestDispatcher("UserServlet?op=index").forward(req, resp);
 		}else {
 			//回到登录页面
 			req.getRequestDispatcher("login.jsp");

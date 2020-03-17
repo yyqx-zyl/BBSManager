@@ -16,6 +16,31 @@ public class UserCrudsImplDao extends DataUtils implements UserCrudsDao {
 	PreparedStatement pst;
 	ResultSet rs;
 	
+	//验证登录的方法
+			/**
+			 * 
+			 * @param UserId 用户名
+			 * @param UserPsw 密码
+			 * @return 用户名和密码相同的个数
+			 */
+	@Override
+	public int verification(String UserId, String UserPsw) {
+		String sql="SELECT COUNT(1) FROM  bbs_user WHERE userId=? AND userpsw=?";
+		Object[] params= {UserId,UserPsw};
+		
+		ResultSet rs=querAll(sql, params);
+		try {
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			closeAll(rs,null, null);
+		}
+		return 0;
+	}
 	//增加
 	@Override
 	public int add(bbs_user user) {
@@ -95,5 +120,7 @@ public class UserCrudsImplDao extends DataUtils implements UserCrudsDao {
 		// delete from bbs_user where userid in(test001,test002)
 		return execteUpdate(sql.toString(), uids);
 	}
+	
+	
 
 }

@@ -5,7 +5,9 @@ import java.util.List;
 import com.bbs.entity.bbs_user;
 
 public interface UserCrudsDao {
-
+	
+	int verification(String UserId,String UserPsw);
+	
 	int add(bbs_user user);
 
 	public List<bbs_user> show();
@@ -17,6 +19,7 @@ public interface UserCrudsDao {
 	int cha(bbs_user user);
 
 	int deleAll(String[] uids);
+
 
 
 }

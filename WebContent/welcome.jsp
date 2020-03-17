@@ -14,7 +14,7 @@
     <body>
     <div class="x-body">
         <blockquote class="layui-elem-quote">欢迎管理员：
-            <span class="x-red">test</span>！当前时间:2018-04-25 20:50:53  <a onclick="parent.x_admin_add_to_tab('在tab打开','https://www.163.com',true)" style="color: red" href="javascript:;">在tab打开</a>
+            <span class="x-red">${userId }</span>！</a>
         </blockquote>
         <fieldset class="layui-elem-field">
             <legend>数据统计</legend>
@@ -48,7 +48,7 @@
                                         </li>
                                         <li class="layui-col-xs2">
                                             <a href="javascript:;" class="x-admin-backlog-body">
-                                                <h3>商品数</h3>
+                                                <h3>帖子数</h3>
                                                 <p>
                                                     <cite>67</cite></p>
                                             </a>

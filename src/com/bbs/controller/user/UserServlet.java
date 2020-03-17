@@ -1,6 +1,7 @@
 package com.bbs.controller.user;
 
 import java.io.File;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Iterator;
@@ -21,7 +22,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.bbs.entity.bbs_user;
 import com.bbs.service.user.CrudsService;
-import com.bbs.service.user.CrudUser.impl.CrudsImplService;
+import com.bbs.service.user.impl.CrudsImplService;
 
 /**
  * Servlet implementation class UserServlet
@@ -51,6 +52,8 @@ public class UserServlet extends HttpServlet {
 		String op=req.getParameter("op");
 		if ("show".equals(op)) {
 			show(req,resp);
+		}else if("index".equals(op)) {
+			index(req,resp);
 		}else if("Add".equals(op)) {
 			Add(req,resp);
 		}else if("delete".equals(op)) {
@@ -61,7 +64,34 @@ public class UserServlet extends HttpServlet {
 			xiu(req,resp);
 		}else if("delAll".equals(op)) {
 			delAll(req,resp);
+		}else if ("finduser".equals(op)) {
+			finduser(req,resp);
+		}else if ("loginOut".equals(op)) {
+			loginOut(req,resp);
 		}
+		
+	}
+	//退出登录
+	private void loginOut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		// 清除保存在session中的用户名
+				req.getSession().removeAttribute("userId");
+				resp.sendRedirect("login.jsp");
+	}
+	//登录用户的信息显示
+	private void finduser(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		String userId = req.getParameter("userId");
+		List<bbs_user> users=cr.show(userId);
+		if(users != null) {
+			req.getSession().setAttribute("user", users);
+			resp.sendRedirect("server/member-edit.jsp");
+		}	
+	}
+	//主页面显示
+	private void index(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		resp.setContentType("text/hmtl;UTF-8");
+		
+		req.getRequestDispatcher("/server/index.jsp").forward(req, resp);
 		
 	}
 	//批量删除

@@ -1,9 +1,11 @@
-package com.bbs.service.user.CrudUser.impl;
+package com.bbs.service.user.impl;
 
 import java.util.List;
 
+import com.bbs.dao.User.Userdao;
 import com.bbs.dao.User.CrudUser.UserCrudsDao;
 import com.bbs.dao.User.CrudUser.impl.UserCrudsImplDao;
+import com.bbs.dao.User.impl.UserDaoImpl;
 import com.bbs.entity.bbs_user;
 import com.bbs.service.user.CrudsService;
 /**
@@ -12,7 +14,19 @@ import com.bbs.service.user.CrudsService;
  *
  */
 public class CrudsImplService implements CrudsService {
-	UserCrudsDao dao=new UserCrudsImplDao();
+		private	UserCrudsDao dao=new UserCrudsImplDao();
+		
+	@Override
+	public boolean verification(String UserId, String UserPsw) {
+		int rs=dao.verification(UserId, UserPsw);
+		if (rs>0) {
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
+	
 	//Ôö¼Ó
 	@Override
 	public boolean add(bbs_user user) {

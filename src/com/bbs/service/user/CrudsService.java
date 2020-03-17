@@ -5,7 +5,8 @@ import java.util.List;
 import com.bbs.entity.bbs_user;
 
 public interface CrudsService {
-
+	boolean verification(String UserId,String UserPsw);
+	
 	boolean add(bbs_user user);
 
 	public List<bbs_user> show();
@@ -17,5 +18,6 @@ public interface CrudsService {
 	boolean cha(bbs_user user);
 
 	boolean delAll(String userIds);
+
 	
 }
