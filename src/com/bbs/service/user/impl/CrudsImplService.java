@@ -2,10 +2,8 @@ package com.bbs.service.user.impl;
 
 import java.util.List;
 
-import com.bbs.dao.User.Userdao;
-import com.bbs.dao.User.CrudUser.UserCrudsDao;
-import com.bbs.dao.User.CrudUser.impl.UserCrudsImplDao;
-import com.bbs.dao.User.impl.UserDaoImpl;
+import com.bbs.dao.User.UserCrudsDao;
+import com.bbs.dao.User.impl.UserCrudsImplDao;
 import com.bbs.entity.bbs_user;
 import com.bbs.service.user.CrudsService;
 /**

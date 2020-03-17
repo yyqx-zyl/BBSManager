@@ -1,4 +1,4 @@
-package com.bbs.dao.User.CrudUser;
+package com.bbs.dao.User;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.bbs.dao.User.CrudUser.impl;
+package com.bbs.dao.User.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bbs.commons.DataUtils;
-import com.bbs.dao.User.CrudUser.UserCrudsDao;
+import com.bbs.dao.User.UserCrudsDao;
 import com.bbs.entity.bbs_user;
 
 public class UserCrudsImplDao extends DataUtils implements UserCrudsDao {
