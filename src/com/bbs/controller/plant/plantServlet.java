@@ -54,9 +54,30 @@ public class plantServlet extends HttpServlet {
 			deletById(req,resp);
 		}else if("scach".equals(op)) {
 			scach(req,resp);
+		}else if("deletAll".equals(op)) {
+			deletAll(req,resp);
 		}
 		
 	}
+	//批量删除
+	private void deletAll(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		//获得页面数据
+		String ids=req.getParameter("ids");
+		System.out.println(ids);
+		//调用方法
+		boolean isOk =ps.deletAll(ids);
+		
+		//相客户端响应一个json对象
+		PrintWriter out=resp.getWriter();
+		if (isOk) {
+			out.write("{\"result\":\"true\"}");
+		}else {
+			out.write("{\"result\":\"false\"}");
+		}
+		out.flush();
+	}
+
+
 	//搜索
 	private void scach(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		//获得页面的值
@@ -82,6 +103,7 @@ public class plantServlet extends HttpServlet {
 		}else {
 			out.write("{\"result\":\"false\"}");
 		}
+		out.flush();
 	}
 
 

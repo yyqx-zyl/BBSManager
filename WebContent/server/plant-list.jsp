@@ -48,7 +48,7 @@
         <button class="layui-btn" onclick="x_admin_show('添加模块','${pageContext.request.contextPath}/server/plant-add.jsp')"><i class="layui-icon"></i>添加</button>
         <span class="x-right" style="line-height:40px">共有数据：88 条</span>
       </xblock>
-      <table class="layui-table">
+      <table class="layui-table x-admin">
         <thead>
           <tr>
             <th>
@@ -62,12 +62,13 @@
             <th>操作</th>
         </thead>
         <tbody>
+        <c:set var="y" value="0"></c:set>
         <c:forEach items="${plant }" var="p">
           <tr>
             <td>
-              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
+              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='${p.plateId }'><i class="layui-icon">&#xe605;</i></div>
             </td>
-            <td>${p.plateId }</td>
+            <td><c:if test="true">${y=y+1 }</c:if><%-- ${p.plateId } --%></td>
             <td>${p.plateTitle }</td>
             <td>${p.plateMessage }</td>
             <td>
@@ -176,9 +177,24 @@
         var data = tableCheck.getData();
   
         layer.confirm('确认要删除吗？'+data,function(index){
-            //捉到所有被选中的，发异步进行删除
-            layer.msg('删除成功', {icon: 1});
-            $(".layui-form-checked").not('.header').parents('tr').remove();
+        	$.ajax({
+        		url:"${pageContext.request.contextPath}/plant?op=deletAll",
+    			type:"post",
+    			data:{"ids":JSON.stringify(data)},
+    			dataType:"json",
+    			success:function(res){
+    				if (res.result=="true") {
+    					 //捉到所有被选中的，发异步进行删除
+    		            layer.msg('删除成功', {icon: 1});
+    		            $(".layui-form-checked").not('.header').parents('tr').remove();
+					}else{
+						layer.msg('删除失败', {icon: 2});
+					}
+    			}
+        	});
+        	
+        	
+           
         });
       }
     </script>

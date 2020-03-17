@@ -16,4 +16,6 @@ public interface plantService {
 	boolean deletById(int plateId);
 
 	List<bbs_plate> scach(String plateTitle);
+
+	boolean deletAll(String ids);
 }

@@ -90,5 +90,19 @@ public class plantDaoImpl extends DataUtils implements plantDao {
 		}
 		return plant;
 	}
-	
+	//批量删除
+	@Override
+	public int deletAll(String[] pids) {
+		StringBuffer sql = new StringBuffer("DELETE  FROM bbs_plate WHERE plateId in(");
+		// 根据参数数组的长度，拼接锁需要的?号个数
+		for (int i = 0; i < pids.length; i++) {
+			sql.append("?");
+			if (i != pids.length-1) {
+				sql.append(",");
+			}
+		}
+		sql.append(")");
+		return execteUpdate(sql.toString(), pids);
+		
+	}
 }

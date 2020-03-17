@@ -16,4 +16,6 @@ public interface plantDao {
 	int deletById(int plateId);
 
 	List<bbs_plate> scach(String plateTitle);
+
+	int deletAll(String[] pids);
 }

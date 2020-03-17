@@ -72,4 +72,21 @@ public class plantServiceImpl extends DataUtils implements plantService {
 			return null;
 		}
 	}
+	//批量删除
+	@Override
+	public boolean deletAll(String ids) {
+		// ids是组合成的字符串
+		//去除所有“”
+		ids=ids.replaceAll("\"","");
+		//取中间的（
+		ids=ids.substring(1,ids.lastIndexOf("]")).replaceAll("\"","");
+		String[] pids=ids.split(",");
+		
+		int rs=dao.deletAll(pids);
+		if (rs>0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 }
