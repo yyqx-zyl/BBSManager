@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.bbs.commons.DataUtils;
 import com.bbs.dao.plant.plantDao;
+import com.bbs.entity.bbs_category;
 import com.bbs.entity.bbs_plate;
 
 public class plantDaoImpl extends DataUtils implements plantDao {
@@ -104,5 +105,22 @@ public class plantDaoImpl extends DataUtils implements plantDao {
 		sql.append(")");
 		return execteUpdate(sql.toString(), pids);
 		
+	}
+	//显示主题的所有
+	@Override
+	public List<bbs_category> showCall() {
+		List<bbs_category> clant=new ArrayList<bbs_category>();
+		
+		try {
+			String sql ="SELECT categoryId,category FROM bbs_category ;";
+			rs=querAll(sql, null);
+			while (rs.next()) {
+				clant.add(new bbs_category(rs.getInt("categoryId"),rs.getString("category")));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return clant;
 	}
 }

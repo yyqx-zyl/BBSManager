@@ -2,17 +2,17 @@ package com.bbs.service.user.impl;
 
 import java.util.List;
 
-import com.bbs.dao.User.UserCrudsDao;
-import com.bbs.dao.User.impl.UserCrudsImplDao;
+import com.bbs.dao.User.UserDao;
+import com.bbs.dao.User.impl.UserDaoImpl;
 import com.bbs.entity.bbs_user;
-import com.bbs.service.user.CrudsService;
+import com.bbs.service.user.UserService;
 /**
  * ÔöÉ¾¸Ä²é
  * @author Zylyyqx
  *
  */
-public class CrudsImplService implements CrudsService {
-		private	UserCrudsDao dao=new UserCrudsImplDao();
+public class UserServiceImpl implements UserService {
+		private	UserDao dao=new UserDaoImpl();
 		
 	@Override
 	public boolean verification(String UserId, String UserPsw) {

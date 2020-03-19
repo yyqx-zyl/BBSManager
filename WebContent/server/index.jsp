@@ -25,7 +25,7 @@
 <body>
     <!-- 顶部开始 -->
     <div class="container">
-        <div class="logo"><a href="./index.jsp">主页面</a></div>
+        <div class="logo"><a href="${pageContext.request.contextPath }/UserServlet?op=index">主页面</a></div>
         <div class="left_open">
             <i title="展开左侧栏" class="iconfont">&#xe699;</i>
         </div>
@@ -84,7 +84,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li date-refresh="1">
-                        <a _href="UserServlet?op=show">
+                        <a _href="server/invitation-list.jsp">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>帖子列表</cite>
                            
@@ -106,12 +106,12 @@
                             <cite>模块列表</cite>
                         </a>
                     </li >
-                    <li>
+                    <!-- <li>
                         <a _href="plant?op=showAll">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>主题列表</cite>
                         </a>
-                    </li >
+                    </li > -->
                 </ul>
             </li>
             

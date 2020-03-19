@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bbs.commons.DataUtils;
-import com.bbs.dao.User.UserCrudsDao;
+import com.bbs.dao.User.UserDao;
 import com.bbs.entity.bbs_user;
 
-public class UserCrudsImplDao extends DataUtils implements UserCrudsDao {
+public class UserDaoImpl extends DataUtils implements UserDao {
 	Connection conn;
 	PreparedStatement pst;
 	ResultSet rs;

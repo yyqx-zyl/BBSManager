@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.bbs.entity.bbs_user;
 
-public interface UserCrudsDao {
+public interface UserDao {
 	
 	int verification(String UserId,String UserPsw);
 	

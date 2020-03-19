@@ -5,6 +5,7 @@ import java.util.List;
 import com.bbs.commons.DataUtils;
 import com.bbs.dao.plant.plantDao;
 import com.bbs.dao.plant.impl.plantDaoImpl;
+import com.bbs.entity.bbs_category;
 import com.bbs.entity.bbs_plate;
 import com.bbs.service.plant.plantService;
 
@@ -87,6 +88,17 @@ public class plantServiceImpl extends DataUtils implements plantService {
 			return true;
 		}else {
 			return false;
+		}
+	}
+	
+	//主题的显示
+	@Override
+	public List<bbs_category> showCall() {
+		List<bbs_category> clant=dao.showCall();
+		if (clant!=null) {
+			return clant;
+		}else {
+			return null;
 		}
 	}
 }

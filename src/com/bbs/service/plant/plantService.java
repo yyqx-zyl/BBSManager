@@ -2,6 +2,7 @@ package com.bbs.service.plant;
 
 import java.util.List;
 
+import com.bbs.entity.bbs_category;
 import com.bbs.entity.bbs_plate;
 
 public interface plantService {
@@ -18,4 +19,6 @@ public interface plantService {
 	List<bbs_plate> scach(String plateTitle);
 
 	boolean deletAll(String ids);
+
+	List<bbs_category> showCall();
 }

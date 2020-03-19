@@ -1,6 +1,7 @@
 package com.bbs.controller.user;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,8 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bbs.service.user.CrudsService;
-import com.bbs.service.user.impl.CrudsImplService;
+import com.bbs.entity.bbs_category;
+import com.bbs.entity.bbs_plate;
+import com.bbs.service.plant.plantService;
+import com.bbs.service.plant.impl.plantServiceImpl;
+import com.bbs.service.user.UserService;
+import com.bbs.service.user.impl.UserServiceImpl;
 
 /**
  * Servlet implementation class Login
@@ -31,7 +36,7 @@ public class Login extends HttpServlet {
 	 */
     	//创建一个操作用户的业务对象类
     
-  	private CrudsService cr=new CrudsImplService();
+  	private UserService cr=new UserServiceImpl();
   	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//设置编码
@@ -40,10 +45,18 @@ public class Login extends HttpServlet {
 		//获得页面数据
 		String userId=req.getParameter("userid");
 		String userpsw=req.getParameter("userpsw");
-		//调用业务层中的方法
+		
+		//调用业务层中验证登录的方法
 		boolean isOk=cr.verification(userId, userpsw);
 		//跳转
 		if (isOk) {
+			plantService ps=new plantServiceImpl();
+			
+			List<bbs_plate> plist=ps.showAll();
+			List<bbs_category> clist=ps.showCall();
+			req.getSession().setAttribute("clist",clist);
+			req.getSession().setAttribute("plist",plist);
+			
 			req.getSession().setAttribute("userId",userId);
 			req.getRequestDispatcher("UserServlet?op=index").forward(req, resp);
 		}else {

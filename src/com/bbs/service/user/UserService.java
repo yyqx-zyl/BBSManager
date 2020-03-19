@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.bbs.entity.bbs_user;
 
-public interface CrudsService {
+public interface UserService {
 	boolean verification(String UserId,String UserPsw);
 	
 	boolean add(bbs_user user);

@@ -21,8 +21,8 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.bbs.entity.bbs_user;
-import com.bbs.service.user.CrudsService;
-import com.bbs.service.user.impl.CrudsImplService;
+import com.bbs.service.user.UserService;
+import com.bbs.service.user.impl.UserServiceImpl;
 
 /**
  * Servlet implementation class UserServlet
@@ -39,7 +39,7 @@ public class UserServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     //调用方法
-  		CrudsService cr=new CrudsImplService();
+  		UserService cr=new UserServiceImpl();
   		
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -90,7 +90,9 @@ public class UserServlet extends HttpServlet {
 	private void index(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/hmtl;UTF-8");
-		
+		List<bbs_user> user=null;
+		user=cr.show();
+		req.getSession().setAttribute("user", user);
 		req.getRequestDispatcher("/server/index.jsp").forward(req, resp);
 		
 	}
