@@ -84,7 +84,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li date-refresh="1">
-                        <a _href="server/invitation-list.jsp">
+                        <a _href="${pageContext.request.contextPath}/invitation?op=showAll">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>帖子列表</cite>
                            

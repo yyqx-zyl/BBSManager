@@ -150,7 +150,7 @@
       /*用户-删除*/
       function member_del(obj,id){
           layer.confirm('确认要删除吗？',function(index){
-        	  $.post("${pageContext.request.contextPath}/plant?op=deletById",{plateId:id },function(){
+        	  $.post("${pageContext.request.contextPath}/plant?op=deletById",{plateId:id },function(data){
         		  if (data.result=="true") {
         			  //发异步删除数据
                       $(obj).parents("tr").remove();

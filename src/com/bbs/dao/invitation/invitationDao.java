@@ -11,4 +11,6 @@ public interface invitationDao {
 
 	int add(bbs_invitation invi);
 
+	int deleteByid(String invitationId);
+
 }

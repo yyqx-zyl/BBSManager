@@ -47,7 +47,7 @@
         <button class="layui-btn" onclick="x_admin_show('添加用户','${pageContext.request.contextPath}/server/invitation-add.jsp')"><i class="layui-icon"></i>添加</button>
         <span class="x-right" style="line-height:40px">共有数据：88 条</span>
       </xblock>
-      <table class="layui-table">
+      <table class="layui-table x-admin">
         <thead>
           <tr>
             <th>
@@ -72,21 +72,21 @@
 	            <td>
 	              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
 	            </td>
-	          	<td>1111  ${in.invitationId } </td>
-	            <td><%-- ${in.invitationMessage } --%></td>
-	            <td><%-- ${in.userId } --%></td>
-	            <td><%-- ${in.plateTitle } --%></td>
-	            <td><%-- ${in.category} --%></td>
-	            <td><%-- ${in.isPass } --%></td>
-	            <td><%-- ${in.isEnable } --%></td>
-	            <td><%-- ${in.isCream } --%></td>
-	            <td><%-- ${in.invitationCreate } --%></td>
-	            <td><%-- ${in.invitationModify } --%></td>
+	          	<td>${in.invitationId } </td>
+	            <td>${in.invitationMessage }</td>
+	            <td>${in.userId }</td>
+	            <td>${in.plateTitle }</td>
+	            <td>${in.category} </td>
+	            <td>${in.isPass }</td>
+	            <td>${in.isEnable } </td>
+	            <td>${in.isCream } </td>
+	            <td>${in.invitationCreate }</td>
+	            <td>${in.invitationModify }</td>
 	            <td class="td-manage">
-	              <a title="查看"  onclick="x_admin_show('编辑','order-view.html')" href="javascript:;">
+	              <a title="修改"  onclick="x_admin_show('修改','${pageContext.request.contextPath}/server/invitation-edit.jsp')" href="javascript:;">
 	                <i class="layui-icon">&#xe63c;</i>
 	              </a>
-	              <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
+	              <a title="删除" onclick="member_del(this,'${in.invitationId }')" href="javascript:;">
 	                <i class="layui-icon">&#xe640;</i>
 	              </a>
 	            </td>
@@ -107,9 +107,6 @@
 
     </div>
     <script>
-    	$(function() {
-			$.post("${pageContext.request.contextPath}/invitation?op=showAll");
-		});
       layui.use('laydate', function(){
         var laydate = layui.laydate;
         
@@ -151,13 +148,25 @@
       /*用户-删除*/
       function member_del(obj,id){
           layer.confirm('确认要删除吗？',function(index){
-              //发异步删除数据
-              $(obj).parents("tr").remove();
-              layer.msg('已删除!',{icon:1,time:1000});
+        	  $.post("${pageContext.request.contextPath}/invitation?op=deletByid",{invitationId:id},function(data){
+        		  if (data.result=="true") {
+        			//发异步删除数据
+                      $(obj).parents("tr").remove();
+                      layer.msg('已删除!',{icon:1,time:1000});
+                    //关闭当前frame
+		                parent.layer.close(index);
+		                // 可以对父窗口进行刷新 
+		                x_admin_father_reload();
+				}else{
+					layer.msg('删除失败!',{icon:1,time:1000});
+                    //关闭当前frame
+	                parent.layer.close(index);
+	                // 可以对父窗口进行刷新 
+	                x_admin_father_reload();
+				}
+        	  });
           });
       }
-
-
 
       function delAll (argument) {
 

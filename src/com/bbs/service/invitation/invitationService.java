@@ -10,4 +10,6 @@ public interface invitationService {
 
 	boolean add(bbs_invitation invi);
 
+	boolean deletByid(String invitationId);
+
 }

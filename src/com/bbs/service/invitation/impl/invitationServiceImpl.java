@@ -30,5 +30,15 @@ public class invitationServiceImpl implements invitationService {
 		}
 		
 	}
+	//É¾³ı
+	@Override
+	public boolean deletByid(String invitationId) {
+		int rs=dao.deleteByid(invitationId);
+		if (rs>0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 
 }

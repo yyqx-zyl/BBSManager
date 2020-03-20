@@ -50,8 +50,8 @@ public class invitationServlet extends HttpServlet {
 			showAll(req,resp);
 		}else if ("Add".equals(op)) {
 			Add(req,resp);
-		}else if ("".equals(op)) {
-			//(req,resp);
+		}else if ("deletByid".equals(op)) {
+			deletByid(req,resp);
 		}else if ("".equals(op)) {
 			//(req,resp);
 		}else if ("".equals(op)) {
@@ -59,6 +59,24 @@ public class invitationServlet extends HttpServlet {
 		}else if ("".equals(op)) {
 			//(req,resp);
 		}
+	}
+	//删除
+	private void deletByid(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		// 获得页面数据
+		String invitationId=req.getParameter("invitationId");
+		System.out.println(invitationId);
+		boolean isOk=is.deletByid(invitationId);
+		PrintWriter out=resp.getWriter();
+    	//返回到页面的数据，提示成功或失败
+    	if (isOk) {
+			out.write("{\"result\":\"true\"}");
+		}else {
+			out.write("{\"result\":\"false\"}");
+		}
+		out.flush();
+		
+		
+		
 	}
 	//添加
     private void Add(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -94,7 +112,7 @@ public class invitationServlet extends HttpServlet {
 	private void showAll(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//获得数据
 		List<bbs_invitation> invi= is.showAll();
-		
+		//req.getSession().setAttribute("invi",invi);
 		req.setAttribute("invi",invi);
 		req.getRequestDispatcher("server/invitation-list.jsp").forward(req, resp);
 	}

@@ -57,5 +57,14 @@ public class invitationDaoImpl extends DataUtils implements invitationDao {
 		System.out.println(num);
 		return num;
 	}
+	//É¾³ý
+	@Override
+	public int deleteByid(String invitationId) {
+		String sql="DELETE  FROM bbs_invitation WHERE invitationId=?;";
+		Object[] params= {invitationId};
+		int num=execteUpdate(sql, params);
+		System.out.println(num);
+		return num;
+	}
 
 }
