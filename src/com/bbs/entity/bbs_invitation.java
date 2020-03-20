@@ -159,9 +159,16 @@ public class bbs_invitation {
 		this.invitationCreate = invitationCreate;
 		this.invitationModify = invitationModify;
 	}
+	
+	
+	public bbs_invitation(String invitationId, String invitationMessage, int plateId, int categoryId) {
+		super();
+		this.invitationId = invitationId;
+		this.invitationMessage = invitationMessage;
+		this.plateId = plateId;
+		this.categoryId = categoryId;
+	}
 	public bbs_invitation() {
 		super();
 	}
-	
-	
 }

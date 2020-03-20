@@ -37,56 +37,60 @@
               </div>
           </div>
           
-          <div class="layui-form-item">
-              <label for="invitationMessage" class="layui-form-label">
-                  <span class="x-red">*</span>帖子信息
-              </label>
-              <div class="layui-input-inline">
-                  <input type="text" id="invitationMessage" name="invitationMessage" required="" lay-verify="invitationMessage"
-                  autocomplete="off" class="layui-input">
-              </div>
-              <div class="layui-form-mid layui-word-aux">
-                  <span class="x-red">*</span>帖子信息介绍
-              </div>
-          </div>
-          
-          
-          <div class="layui-form-item">
-              <label for="username" class="layui-form-label">
-                  <span class="x-red">*</span>所属模块
-              </label>
-              <div class="layui-input-inline">
-                   <div class="layui-input-inline"> 
-                    <select name="plateId">
-                    	<option value="">请选择</option>   
-                    	<c:forEach items="${plist }" var="p">
-                    		<option value="${p.plateId }">${p.plateTitle }</option>
-                    	</c:forEach>
-					</select>     
-              		</div>
-         	 </div>
-          </div>
-          <div class="layui-form-item">
-              <label for="username" class="layui-form-label">
-                  <span class="x-red">*</span>帖子分类
-              </label>
-             <div class="layui-input-inline">
-                 <div class="layui-input-inline"> 
-                    <select name="categoryId">
-                    	<option value="">请选择</option>   
-                    	<c:forEach items="${clist }" var="c">
-                    		<option value="${c.categoryId }">${c.category }</option>
-                    	</c:forEach>
-					</select>          
-				</div>
-              </div>
-          </div>
-         
+	          <div class="layui-form-item">
+	              <label for="invitationMessage" class="layui-form-label">
+	                  <span class="x-red">*</span>帖子信息
+	              </label>
+	              <div class="layui-input-inline">
+	                  <input type="text" id="invitationMessage" name="invitationMessage" required="" lay-verify="invitationMessage"
+	                 	 autocomplete="off" class="layui-input"  value="${invi.invitationMessage }">
+	              </div>
+	              <div class="layui-form-mid layui-word-aux">
+	                  <span class="x-red">*</span>帖子信息介绍
+	              </div>
+	          </div>
+	          
+	          
+	         <div class="layui-form-item">
+	              <label for="username" class="layui-form-label">
+	                  <span class="x-red">*</span>所属模块
+	              </label>
+	              <div class="layui-input-inline">
+	                   <div class="layui-input-inline"> 
+	                    <select name="plateId">
+	                    	<c:forEach items="${plist }" var="p">
+	                    		<c:if test="${invi.plateId==p.plateId }">
+	                    			<option value="${p.plateId }" selected = "selected">${p.plateTitle }</option>
+	                    		</c:if>
+	                    			<option value="${p.plateId }">${p.plateTitle }</option>
+	                    	</c:forEach>
+						</select>     
+	              		</div>
+	         	 </div>
+	          </div>
+	          
+	         <div class="layui-form-item">
+	              <label for="username" class="layui-form-label">
+	                  <span class="x-red">*</span>帖子分类
+	              </label>
+	             <div class="layui-input-inline">
+	                 <div class="layui-input-inline"> 
+	                    <select name="categoryId">
+	                    	<c:forEach items="${clist }" var="c">
+	                    		<c:if test="${invi.categoryId==c.categoryId }">
+	                    			<option value="${c.categoryId }" selected = "selected">${c.category }</option>
+	                    		</c:if>
+	                    		<option value="${c.categoryId }">${c.category }</option>
+	                    	</c:forEach>
+						</select>          
+					</div>
+	              </div>
+	          </div>
           <div class="layui-form-item">
               <label for="L_repass" class="layui-form-label">
               </label>
               <button  class="layui-btn" lay-filter="add" lay-submit="">
-                 		 增加
+                 		 确认修改
               </button>
           </div>
       </form>
@@ -115,7 +119,7 @@
         //监听提交
           form.on('submit(add)', function(data){
         	  $.ajax({
-        		 url:"${pageContext.request.contextPath}/invitation?op=update",
+        		 url:"${pageContext.request.contextPath}/invitation?op=update&invitationId=${invi.invitationId}",
         		 type:"post",
         		 data:data.field,
         		 dataType:"json",

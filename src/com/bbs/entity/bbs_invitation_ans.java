@@ -1,48 +1,68 @@
 package com.bbs.entity;
 /**
- * 帖子回复信息
- * @author Zylyyqx
+ * 回帖表
+ * @author Effort
  *
  */
+
+import java.util.Date;
+
 public class bbs_invitation_ans {
-	private int plateId;//自增主键
-	private String plateTitle;//板块标题
-	private String plateMessage;//板块描述
-	private int isEnable;//板块是否被屏蔽
-	public int getPlateId() {
-		return plateId;
+
+	private String ansId;//回复id
+	private String ansMessage;//回复内容
+	private String invitationId;//回复帖子id
+	private String userId;//回复账户id
+	private Date  ansDate;//回复时间
+	public String getAnsId() {
+		return ansId;
 	}
-	public void setPlateId(int plateId) {
-		this.plateId = plateId;
+	public void setAnsId(String ansId) {
+		this.ansId = ansId;
 	}
-	public String getPlateTitle() {
-		return plateTitle;
+	public String getAnsMessage() {
+		return ansMessage;
 	}
-	public void setPlateTitle(String plateTitle) {
-		this.plateTitle = plateTitle;
+	public void setAnsMessage(String ansMessage) {
+		this.ansMessage = ansMessage;
 	}
-	public String getPlateMessage() {
-		return plateMessage;
+	public String getInvitationId() {
+		return invitationId;
 	}
-	public void setPlateMessage(String plateMessage) {
-		this.plateMessage = plateMessage;
+	public void setInvitationId(String invitationId) {
+		this.invitationId = invitationId;
 	}
-	public int getIsEnable() {
-		return isEnable;
+	public String getUserId() {
+		return userId;
 	}
-	public void setIsEnable(int isEnable) {
-		this.isEnable = isEnable;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-	public bbs_invitation_ans(int plateId, String plateTitle, String plateMessage, int isEnable) {
+	public Date getAnsDate() {
+		return ansDate;
+	}
+	public void setAnsDate(Date ansDate) {
+		this.ansDate = ansDate;
+	}
+	public bbs_invitation_ans(String ansId, String ansMessage, String invitationId, String userId, Date ansDate) {
 		super();
-		this.plateId = plateId;
-		this.plateTitle = plateTitle;
-		this.plateMessage = plateMessage;
-		this.isEnable = isEnable;
+		this.ansId = ansId;
+		this.ansMessage = ansMessage;
+		this.invitationId = invitationId;
+		this.userId = userId;
+		this.ansDate = ansDate;
 	}
 	public bbs_invitation_ans() {
 		super();
 	}
+	public bbs_invitation_ans(String ansId, String ansMessage, String invitationId, String userId) {
+		super();
+		this.ansId = ansId;
+		this.ansMessage = ansMessage;
+		this.invitationId = invitationId;
+		this.userId = userId;
+	}
+	
 	
 	
 }

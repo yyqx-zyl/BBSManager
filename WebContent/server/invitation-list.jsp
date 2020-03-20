@@ -36,16 +36,15 @@
     </div>
     <div class="x-body">
       <div class="layui-row">
-        <form class="layui-form layui-col-md12 x-so">
-          
+        <!-- <form class="layui-form layui-col-md12 x-so">
           <input type="text" name="username"  placeholder="请输入订单号" autocomplete="off" class="layui-input">
           <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
-        </form>
+        </form> -->
       </div>
       <xblock>
-        <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
+       <!--  <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button> -->
         <button class="layui-btn" onclick="x_admin_show('添加用户','${pageContext.request.contextPath}/server/invitation-add.jsp')"><i class="layui-icon"></i>添加</button>
-        <span class="x-right" style="line-height:40px">共有数据：88 条</span>
+        <!-- <span class="x-right" style="line-height:40px">共有数据：88 条</span> -->
       </xblock>
       <table class="layui-table x-admin">
         <thead>
@@ -83,8 +82,11 @@
 	            <td>${in.invitationCreate }</td>
 	            <td>${in.invitationModify }</td>
 	            <td class="td-manage">
-	              <a title="修改"  onclick="x_admin_show('修改','${pageContext.request.contextPath}/server/invitation-edit.jsp')" href="javascript:;">
+	              <a title="查看详情"  onclick="x_admin_show('查看','${pageContext.request.contextPath}/invitation?op=showByid&inviId=${in.invitationId }')" href="javascript:;">
 	                <i class="layui-icon">&#xe63c;</i>
+	              </a>
+	              <a title="修改"  onclick="x_admin_show('修改','${pageContext.request.contextPath}/invitation?op=findByid&inviId=${in.invitationId }')" href="javascript:;">
+	                <i class="layui-icon">&#xe642;</i>
 	              </a>
 	              <a title="删除" onclick="member_del(this,'${in.invitationId }')" href="javascript:;">
 	                <i class="layui-icon">&#xe640;</i>
